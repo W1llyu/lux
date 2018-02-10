@@ -9,7 +9,8 @@ import (
 )
 
 var (
-	pools map[string]*Pool
+	// 支持同时连接多个redis实例
+	pools = make(map[string]*Pool)
 	once sync.Once
 )
 
@@ -64,8 +65,12 @@ func initPool(name string, conf *config.RedisConf) {
 	pools[name] = pool
 }
 
-func (p *Pool) Get() *Client {
+func (p *Pool) GetClient() *Client {
 	return &Client{p.Pool.Get()}
+}
+
+func (p *Pool) GetPubSubClent() *PubSubClient {
+	return &PubSubClient{redis.PubSubConn{Conn: p.Pool.Get()}}
 }
 
 func (p *Pool) Close() error {

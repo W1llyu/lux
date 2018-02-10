@@ -7,11 +7,13 @@ import (
 	"github.com/BurntSushi/toml"
 	"path/filepath"
 	"os"
+	"github.com/Lux-go/common/utils"
 )
 
 type Config struct {
 	Redis map[string]*RedisConf
 	RabbitMQ map[string]*AmqpConf
+	Websocket *WebsocketConf
 }
 
 type duration struct {
@@ -30,6 +32,10 @@ type AmqpConf struct {
 	Addr string
 }
 
+type WebsocketConf struct {
+	Port int `toml:"port"`
+}
+
 var (
 	cfg *Config
 	once sync.Once
@@ -43,11 +49,10 @@ func GetConf() *Config {
 func loadConf() {
 	gopath := os.Getenv("GOPATH")
 	filePath, err := filepath.Abs(fmt.Sprintf("%s/config/lux/config.toml", gopath))
-	//filePath, err := filepath.Abs("./common/config/config.toml")
 	if err != nil {
 		panic(err)
 	}
-	fmt.Printf("parse toml file. filePath: %s\n", filePath)
+	utils.Infof("parse toml file. filePath: %s\n", filePath)
 	if _, err := toml.DecodeFile(filePath, &cfg); err != nil {
 		panic(err)
 	}

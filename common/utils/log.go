@@ -17,3 +17,15 @@ func FailOnError(err error, msg string) {
 		panic(fmt.Sprintf("%s: %s", msg, err))
 	}
 }
+
+func Info(msg string) {
+	log.Printf("[INFO] %s", msg)
+}
+
+func Infof(format string, a ...interface{}) {
+	log.Printf("[INFO] %s", fmt.Sprintf(format, a...))
+}
+
+func Error(err error, msg string) {
+	log.Printf("[ERROR] %s %s", msg, err)
+}

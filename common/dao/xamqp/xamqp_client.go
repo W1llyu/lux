@@ -11,7 +11,7 @@ import (
 
 /**
  * Client包含了和RabbitMQ的connection
- * 包含declare了不通exchange的多个channel
+ * 包含declare了不同exchange的多个channel
  */
 type Client struct {
 	Lock sync.RWMutex

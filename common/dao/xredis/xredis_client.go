@@ -10,11 +10,11 @@ type Client struct {
 }
 
 func GetClient() *Client {
-	return GetPool().Get()
+	return GetPool().GetClient()
 }
 
 func GetNamedClient(name string) *Client {
-	return GetNamedPool(name).Get()
+	return GetNamedPool(name).GetClient()
 }
 
 func (c *Client) Close() error {
