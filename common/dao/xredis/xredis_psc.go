@@ -1,8 +1,8 @@
 package xredis
 
 import (
-	"github.com/garyburd/redigo/redis"
 	"github.com/Lux-go/common/utils"
+	"github.com/garyburd/redigo/redis"
 )
 
 /**

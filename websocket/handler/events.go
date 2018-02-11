@@ -5,7 +5,7 @@ import (
 )
 
 type Event struct {
-	Name string
+	Name    string
 	Handler interface{}
 }
 
@@ -17,16 +17,24 @@ func BindEvents(server *socketio.Server) {
 func getEvents() []Event {
 	return []Event{
 		{
-			Name: "subscribe",
+			Name:    "subscribe",
 			Handler: onSubscribe,
 		},
 		{
-			Name: "unsubscribe",
+			Name:    "unsubscribe",
 			Handler: onUnSubscribe,
 		},
 		{
-			Name: "unsubscribeAll",
+			Name:    "unsubscribeAll",
 			Handler: onUnSubscribeAll,
+		},
+		{
+			Name:    "join",
+			Handler: onJoin,
+		},
+		{
+			Name:    "leave",
+			Handler: onLeave,
 		},
 	}
 }

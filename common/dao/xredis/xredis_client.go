@@ -1,8 +1,8 @@
 package xredis
 
 import (
-	"time"
 	"github.com/garyburd/redigo/redis"
+	"time"
 )
 
 type Client struct {

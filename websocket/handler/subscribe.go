@@ -1,8 +1,8 @@
 package handler
 
 import (
-	"github.com/googollee/go-socket.io"
 	"github.com/Lux-go/common/utils"
+	"github.com/googollee/go-socket.io"
 )
 
 type SubscribeMessage struct {
@@ -23,9 +23,9 @@ func onUnSubscribe(socket socketio.Socket, msg SubscribeMessage) {
 	utils.Infof("Socket[%s] Unsubscribe %s", socket.Id(), msg.Channels)
 }
 
-func onUnSubscribeAll(socket socketio.Socket) {
+func onUnSubscribeAll(socket socketio.Socket, msg interface{}) {
+	utils.Infof("Socket[%s] Unsubscribe %s", socket.Id(), socket.Rooms())
 	for _, channel := range socket.Rooms() {
 		socket.Leave(channel)
 	}
-	utils.Infof("Socket[%s] Unsubscribe")
 }

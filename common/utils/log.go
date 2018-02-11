@@ -1,8 +1,8 @@
 package utils
 
 import (
-	"log"
 	"fmt"
+	"log"
 )
 
 func WarnOnError(err error, msg string) {
@@ -11,7 +11,7 @@ func WarnOnError(err error, msg string) {
 	}
 }
 
-func FailOnError(err error, msg string) {
+func Fatal(err error, msg string) {
 	if err != nil {
 		log.Fatalf("%s: %s", msg, err)
 		panic(fmt.Sprintf("%s: %s", msg, err))

@@ -8,7 +8,7 @@ const (
 	CHANNELKEY = "bet_topics"
 )
 
-type RedisQueue struct {}
+type RedisQueue struct{}
 
 func (q *RedisQueue) OnMessage(callback interface{}) {
 	client := xredis.GetPubSubClient()

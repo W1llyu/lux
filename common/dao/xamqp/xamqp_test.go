@@ -1,20 +1,20 @@
 package xamqp
 
 import (
-	"testing"
 	"github.com/streadway/amqp"
+	"testing"
 )
 
 func TestGetChannel(t *testing.T) {
 	client := GetClient()
 	ctx := ExchangeCtx{
-		Name: "logs_direct",
-		Type: "direct",
-		Durable: true,
+		Name:       "logs_direct",
+		Type:       "direct",
+		Durable:    true,
 		AutoDelete: false,
-		Internal: false,
-		NoWait: false,
-		Args: nil,
+		Internal:   false,
+		NoWait:     false,
+		Args:       nil,
 	}
 	channel := client.GetChannel(ctx)
 	err := channel.Publish(

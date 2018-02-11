@@ -7,13 +7,13 @@ type Scheduler interface {
 }
 
 type Message struct {
-	Channel string `json:"channel"`
-	Event string `json:"event"`
-	Data interface{} `json:"data"`
+	Channel string      `json:"channel"`
+	Event   string      `json:"event"`
+	Data    interface{} `json:"data"`
 }
 
 func GetSchedulers() []Scheduler {
-	return []Scheduler {
+	return []Scheduler{
 		CreateQueueScheduler(new(queue.RedisQueue)),
 	}
 }

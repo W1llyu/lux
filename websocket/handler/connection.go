@@ -18,5 +18,8 @@ func onError(socket socketio.Socket, err error) {
 }
 
 func onDisconnection(socket socketio.Socket) {
+	if len(socket.Rooms()) > 0 {
+		onLeave(socket, JoinMessage{socket.Rooms()})
+	}
 	utils.Infof("Socket[%s] disconnected", socket.Id())
 }

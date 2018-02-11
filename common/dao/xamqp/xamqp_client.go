@@ -2,11 +2,11 @@ package xamqp
 
 import (
 	"fmt"
-	"sync"
-	"time"
-	"github.com/streadway/amqp"
 	"github.com/Lux-go/common/config"
 	"github.com/Lux-go/common/utils"
+	"github.com/streadway/amqp"
+	"sync"
+	"time"
 )
 
 /**
@@ -14,15 +14,15 @@ import (
  * 包含declare了不同exchange的多个channel
  */
 type Client struct {
-	Lock sync.RWMutex
-	Conn *amqp.Connection
-	Addr string
-	channels map[string] *Channel
+	Lock     sync.RWMutex
+	Conn     *amqp.Connection
+	Addr     string
+	channels map[string]*Channel
 }
 
 var (
-	clients = make(map[string] *Client)
-	once sync.Once
+	clients = make(map[string]*Client)
+	once    sync.Once
 )
 
 func GetClient() *Client {
@@ -51,7 +51,7 @@ func (client *Client) GetChannel(ctx ExchangeCtx) *Channel {
 }
 
 // 创建一个Channel并且declare Exchange
-func (client *Client) CreateChannel(ctx ExchangeCtx) *Channel{
+func (client *Client) CreateChannel(ctx ExchangeCtx) *Channel {
 	ch, _ := client.Conn.Channel()
 	err := ch.ExchangeDeclare(
 		ctx.Name,
@@ -69,11 +69,11 @@ func (client *Client) CreateChannel(ctx ExchangeCtx) *Channel{
 }
 
 // 初始化Client
-func initClients () {
+func initClients() {
 	for k, v := range config.GetConf().RabbitMQ {
 		clients[k] = &Client{
-			Addr: v.Addr,
-			channels: make(map[string] *Channel),
+			Addr:     v.Addr,
+			channels: make(map[string]*Channel),
 		}
 	}
 }
@@ -87,10 +87,9 @@ func (client *Client) connect() {
 		client.Conn, err = amqp.Dial(client.Addr)
 		if err != nil {
 			utils.WarnOnError(err, fmt.Sprintf("Connect RabbitMQ %s, error, retrying...", client.Addr))
-			time.Sleep(10*time.Second)
+			time.Sleep(10 * time.Second)
 		} else {
 			break
 		}
 	}
 }
-

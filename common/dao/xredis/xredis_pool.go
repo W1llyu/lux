@@ -2,16 +2,16 @@ package xredis
 
 import (
 	"fmt"
-	"time"
-	"sync"
-	"github.com/garyburd/redigo/redis"
 	"github.com/Lux-go/common/config"
+	"github.com/garyburd/redigo/redis"
+	"sync"
+	"time"
 )
 
 var (
 	// 支持同时连接多个redis实例
 	pools = make(map[string]*Pool)
-	once sync.Once
+	once  sync.Once
 )
 
 type Pool struct {
@@ -39,8 +39,8 @@ func initPools() {
 
 func initPool(name string, conf *config.RedisConf) {
 	redisPool := &redis.Pool{
-		MaxIdle: conf.MaxIdle,
-		MaxActive: conf.MaxActive,
+		MaxIdle:     conf.MaxIdle,
+		MaxActive:   conf.MaxActive,
 		IdleTimeout: conf.IdleTimeout.Duration,
 		Dial: func() (redis.Conn, error) {
 			conn, err := redis.Dial("tcp", conf.Addr)
