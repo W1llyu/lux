@@ -1,12 +1,14 @@
+// Message Queue Implement In RabbitMQ
 package queue
 
-import "github.com/Lux-go/common/dao/xamqp"
+import "github.com/Lux-go/common/dao/xrmq"
 
 type RmqQueue struct{}
 
 func (q *RmqQueue) OnMessage(callback interface{}) {
-	client := xamqp.GetClient()
-	ctx := xamqp.ExchangeCtx{
+	client := xrmq.GetClient()
+	defer client.Close()
+	ctx := xrmq.ExchangeCtx{
 		Name:       "logs_direct",
 		Type:       "direct",
 		Durable:    true,
@@ -16,5 +18,5 @@ func (q *RmqQueue) OnMessage(callback interface{}) {
 		Args:       nil,
 	}
 	ch := client.GetChannel(ctx)
-	ch.Receive("", callback)
+	ch.Receive(QUEUEKEY, callback)
 }

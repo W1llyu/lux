@@ -1,4 +1,4 @@
-package xamqp
+package xrmq
 
 import (
 	"fmt"
@@ -41,6 +41,10 @@ func GetNamedClient(name string) *Client {
 	return client
 }
 
+func (client *Client) Close() error {
+	return client.Conn.Close()
+}
+
 func (client *Client) GetChannel(ctx ExchangeCtx) *Channel {
 	if _, ok := client.channels[ctx.Name]; !ok {
 		client.Lock.Lock()
@@ -63,7 +67,7 @@ func (client *Client) CreateChannel(ctx ExchangeCtx) *Channel {
 		ctx.Args,
 	)
 	utils.WarnOnError(err, "Failed to declare an exchange")
-	channel := &Channel{channel: ch}
+	channel := &Channel{channel: ch, ExchangeCtx: ctx}
 	client.channels[ctx.Name] = channel
 	return channel
 }

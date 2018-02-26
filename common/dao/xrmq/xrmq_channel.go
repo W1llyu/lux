@@ -1,4 +1,4 @@
-package xamqp
+package xrmq
 
 import (
 	"github.com/Lux-go/common/utils"
@@ -51,7 +51,7 @@ func (ch *Channel) Receive(key string, callback interface{}) {
 	)
 	utils.Fatal(err, "Failed to register a consumer")
 	for d := range msg {
-		utils.Info(string(d.Body))
+		go callback.(func(string, string))(key, string(d.Body))
 	}
 }
 
@@ -77,4 +77,5 @@ func (ch *Channel) bindQueueToExchange(q amqp.Queue, key string) {
 		nil,
 	)
 	utils.Fatal(err, "Failed to bind a queue")
+	utils.Infof("Bind to Exchange(%s) with key(%s)", ch.ExchangeCtx.Name, key)
 }

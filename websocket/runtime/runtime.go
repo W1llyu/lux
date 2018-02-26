@@ -1,9 +1,9 @@
 package runtime
 
 import (
-	"github.com/googollee/go-socket.io"
 	"log"
 	"sync"
+	"github.com/googollee/go-socket.io"
 )
 
 var (

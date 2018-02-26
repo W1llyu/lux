@@ -1,3 +1,4 @@
+// Queue Scheduler
 package scheduler
 
 import (
@@ -14,11 +15,6 @@ type MsgQueue interface {
 	OnMessage(callback interface{})
 }
 
-type Msg struct {
-	Channel string
-	Data    interface{}
-}
-
 func CreateQueueScheduler(queue MsgQueue) *QueueScheduler {
 	return &QueueScheduler{queue}
 }
@@ -27,8 +23,9 @@ func (qs QueueScheduler) Run() {
 	qs.queue.OnMessage(onEvent)
 }
 
+// queue callback function
 func onEvent(channel, data string) {
-	utils.Infof("Redis Queue Receive %s from %s", data, channel)
+	utils.Infof("Queue Receive %s from %s", data, channel)
 	msg := &Message{
 		Event: "message",
 	}

@@ -10,9 +10,7 @@ var (
 )
 
 func main() {
-	for _, s := range scheduler.GetSchedulers() {
-		go s.Run()
-	}
+	scheduler.GetSchedulers().Run()
 	go websocket.Run()
 	<-forever
 }

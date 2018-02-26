@@ -2,13 +2,13 @@ package websocket
 
 import (
 	"fmt"
+	"log"
+	"net/http"
+	"sync"
 	"github.com/Lux-go/common/config"
 	"github.com/Lux-go/common/utils"
 	"github.com/Lux-go/websocket/handler"
 	"github.com/Lux-go/websocket/runtime"
-	"log"
-	"net/http"
-	"sync"
 )
 
 var (

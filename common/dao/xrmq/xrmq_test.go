@@ -1,4 +1,4 @@
-package xamqp
+package xrmq
 
 import (
 	"github.com/streadway/amqp"
