@@ -1,7 +1,7 @@
 package handler
 
 import (
-	"github.com/Lux-go/common/utils"
+	"github.com/Lux-go/utils"
 	"github.com/googollee/go-socket.io"
 )
 

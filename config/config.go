@@ -3,7 +3,7 @@ package config
 import (
 	"fmt"
 	"github.com/BurntSushi/toml"
-	"github.com/Lux-go/common/utils"
+	"github.com/Lux-go/utils"
 	"os"
 	"path/filepath"
 	"sync"
@@ -11,25 +11,11 @@ import (
 )
 
 type Config struct {
-	Redis     map[string]*RedisConf
-	RabbitMQ  map[string]*AmqpConf
 	Websocket *WebsocketConf
 }
 
 type duration struct {
 	time.Duration
-}
-
-type RedisConf struct {
-	Addr        string
-	Database    int
-	MaxIdle     int      `toml:"max_idle"`
-	MaxActive   int      `toml:"max_active"`
-	IdleTimeout duration `toml:"idle_timeout"`
-}
-
-type AmqpConf struct {
-	Addr string
 }
 
 type WebsocketConf struct {

@@ -1,8 +1,8 @@
 package handler
 
 import (
-	"github.com/Lux-go/common/utils"
-	"github.com/googollee/go-socket.io"
+	"github.com/Lux-go/utils"
+	"github.com/W1llyu/go-socket.io"
 )
 
 func onConnection(socket socketio.Socket) {

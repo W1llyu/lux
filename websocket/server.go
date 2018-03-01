@@ -5,8 +5,8 @@ import (
 	"log"
 	"net/http"
 	"sync"
-	"github.com/Lux-go/common/config"
-	"github.com/Lux-go/common/utils"
+	"github.com/Lux-go/config"
+	"github.com/Lux-go/utils"
 	"github.com/Lux-go/websocket/handler"
 	"github.com/Lux-go/websocket/runtime"
 )

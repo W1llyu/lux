@@ -3,7 +3,7 @@ package scheduler
 
 import (
 	"encoding/json"
-	"github.com/Lux-go/common/utils"
+	"github.com/Lux-go/utils"
 	"github.com/Lux-go/websocket/runtime"
 )
 

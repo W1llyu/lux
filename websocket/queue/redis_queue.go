@@ -2,7 +2,7 @@
 package queue
 
 import (
-	"github.com/Lux-go/common/dao/xredis"
+	"github.com/W1llyu/gdao/xredis"
 )
 
 type RedisQueue struct{}

@@ -1,7 +1,7 @@
 // Message Queue Implement In RabbitMQ
 package queue
 
-import "github.com/Lux-go/common/dao/xrmq"
+import "github.com/W1llyu/gdao/xrmq"
 
 type RmqQueue struct{}
 
