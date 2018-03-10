@@ -1,4 +1,6 @@
-// Message Queue Implement In RabbitMQ
+/*
+ * RabbitMQ Consumer 消息队列
+ */
 package queue
 
 import "github.com/W1llyu/gdao/xrmq"

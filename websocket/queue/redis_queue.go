@@ -1,4 +1,6 @@
-// Message Queue Implement In Redis Pub/Sub
+/*
+ * Redis Sub/Pub 消息队列
+ */
 package queue
 
 import (

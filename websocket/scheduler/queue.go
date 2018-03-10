@@ -1,4 +1,7 @@
-// Queue Scheduler
+/*
+ * Queue Scheduler
+ * 消息队列调度模块
+ */
 package scheduler
 
 import (
@@ -11,6 +14,7 @@ type QueueScheduler struct {
 	queue MsgQueue
 }
 
+// 消息队列
 type MsgQueue interface {
 	OnMessage(callback interface{})
 }
@@ -23,7 +27,7 @@ func (qs QueueScheduler) Run() {
 	qs.queue.OnMessage(onEvent)
 }
 
-// queue callback function
+// 获取消息队列消息时的回调
 func onEvent(channel, data string) {
 	utils.Infof("Queue Receive %s from %s", data, channel)
 	msg := &Message{

@@ -1,3 +1,6 @@
+/*
+ * Lux 启动入口
+ */
 package main
 
 import (
