@@ -35,6 +35,6 @@ func onEvent(channel, data string) {
 	}
 	err := json.Unmarshal([]byte(data), msg)
 	if err == nil {
-		runtime.Server().BroadcastTo(msg.Channel, msg.Event, msg.Data)
+		runtime.Server().BroadcastTo(msg.Channel, msg.Event, NewMessageBody(msg.Channel, msg.Data))
 	}
 }

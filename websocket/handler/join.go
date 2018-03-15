@@ -25,12 +25,16 @@ type NotifyMessage struct {
 	NotifiedAt  int64  `json:"notified_at"`
 }
 
-func onJoin(socket socketio.Socket, msg JoinMessage) {
+func onJoin(socket socketio.Socket, msg JoinMessage) interface {} {
+	notifyMsgs := make(map[string]NotifyMessage)
 	for _, room := range msg.Rooms {
 		socket.Join(room)
-		socket.BroadcastTo(room, NOTIFICATION, createNotifyMessage(room, socket.Id(), JOINTYPE))
+		notifyMsg := createNotifyMessage(room, socket.Id(), JOINTYPE)
+		socket.BroadcastTo(room, NOTIFICATION, notifyMsg)
+		notifyMsgs[room] = notifyMsg
 	}
 	utils.Infof("Socket[%s] Join %s", socket.Id(), msg.Rooms)
+	return notifyMsgs
 }
 
 func onLeave(socket socketio.Socket, msg JoinMessage) {
