@@ -7,7 +7,7 @@ package scheduler
 import (
 	"encoding/json"
 	"github.com/Lux-go/utils"
-	"github.com/Lux-go/websocket/runtime"
+	"github.com/Lux-go/websocket/core"
 )
 
 type QueueScheduler struct {
@@ -35,6 +35,6 @@ func onEvent(channel, data string) {
 	}
 	err := json.Unmarshal([]byte(data), msg)
 	if err == nil {
-		runtime.Server().BroadcastTo(msg.Channel, msg.Event, NewMessageBody(msg.Channel, msg.Data))
+		core.Server().BroadcastTo(msg.Channel, msg.Event, NewMessageBody(msg.Channel, msg.Data))
 	}
 }

@@ -1,7 +1,7 @@
 package handler
 
 import (
-	"github.com/googollee/go-socket.io"
+	"github.com/W1llyu/go-socket.io"
 )
 
 type Event struct {

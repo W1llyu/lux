@@ -1,10 +1,10 @@
 package handler
 
 import (
-	"github.com/Lux-go/utils"
-	"github.com/Lux-go/websocket/runtime"
-	"github.com/googollee/go-socket.io"
 	"time"
+	"github.com/Lux-go/utils"
+	"github.com/Lux-go/websocket/core"
+	"github.com/W1llyu/go-socket.io"
 )
 
 const (
@@ -48,7 +48,7 @@ func onLeave(socket socketio.Socket, msg JoinMessage) {
 func createNotifyMessage(room, name string, eventType int) NotifyMessage {
 	return NotifyMessage{
 		Room:        room,
-		MemberCount: len(runtime.Server().Sockets(room)),
+		MemberCount: len(core.Server().Sockets(room)),
 		Name:        name,
 		Type:        eventType,
 		NotifiedAt:  time.Now().UnixNano() / 1000000,

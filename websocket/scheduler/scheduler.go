@@ -4,8 +4,8 @@
 package scheduler
 
 import (
-	"github.com/Lux-go/websocket/queue"
 	"time"
+	"github.com/Lux-go/websocket/queue"
 )
 
 // 调度器接口

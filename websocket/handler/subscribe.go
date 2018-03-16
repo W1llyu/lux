@@ -2,7 +2,7 @@ package handler
 
 import (
 	"github.com/Lux-go/utils"
-	"github.com/googollee/go-socket.io"
+	"github.com/W1llyu/go-socket.io"
 )
 
 type SubscribeMessage struct {
