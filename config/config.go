@@ -9,9 +9,14 @@ import (
 
 type Config struct {
 	Websocket *WebsocketConf
+	Http *HttpConf
 }
 
 type WebsocketConf struct {
+	Port int `toml:"port"`
+}
+
+type HttpConf struct {
 	Port int `toml:"port"`
 }
 
