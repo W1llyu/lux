@@ -8,7 +8,7 @@ import (
 )
 
 const (
-	NOTIFICATION = "notification"
+	NOTIFICATION = "lux:notification"
 	JOINTYPE     = 1
 	LEAVETYPE    = -1
 )

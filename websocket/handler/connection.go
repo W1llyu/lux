@@ -3,6 +3,7 @@ package handler
 import (
 	"github.com/Lux-go/utils"
 	"github.com/W1llyu/go-socket.io"
+	"regexp"
 )
 
 func onConnection(socket socketio.Socket) {
@@ -19,6 +20,12 @@ func onError(socket socketio.Socket, err error) {
 }
 
 func onDisconnection(socket socketio.Socket) {
+	for _, room := range socket.Rooms() {
+		match, _ := regexp.MatchString("irelia:room:\\d+", room)
+		if match {
+			leaveIreRoom(socket, room)
+		}
+	}
 	if len(socket.Rooms()) > 0 {
 		onLeave(socket, JoinMessage{socket.Rooms()})
 	}
