@@ -4,18 +4,20 @@ import (
 	"fmt"
 	"time"
 	"github.com/W1llyu/go-socket.io"
-	"github.com/Lux-go/websocket/core"
+	"github.com/irelia_socket/websocket/core"
 	"crypto/md5"
 	"regexp"
 	"strconv"
 	"errors"
 	"github.com/W1llyu/gdao/xredis"
 	"encoding/json"
-	"github.com/Lux-go/utils"
+	"github.com/irelia_socket/utils"
 )
 
 type IreRoomMessage struct {
 	RoomId int `json:"room_id"`
+	UserType string `json:"user_type"`
+	UserId int `json:"user_id"`
 }
 
 type IreAckMessage struct {
@@ -35,14 +37,14 @@ type IreSidekiqMessage struct {
 func onJoinIreRoom(socket socketio.Socket, msg IreRoomMessage) interface {} {
 	room := channelName(msg.RoomId)
 	onJoin(socket, JoinMessage{[]string{room}})
-	pushSidekiqTask(msg.RoomId, socket.Id(), JOINTYPE)
+	pushSidekiqTask(msg.RoomId, msg.UserType, msg.UserId, JOINTYPE)
 	return &IreAckMessage{len(core.Server().Sockets(room))}
 }
 
 func onLeaveIreRoom(socket socketio.Socket, msg IreRoomMessage) {
 	room := channelName(msg.RoomId)
 	onLeave(socket, JoinMessage{[]string{room}})
-	pushSidekiqTask(msg.RoomId, socket.Id(), LEAVETYPE)
+	pushSidekiqTask(msg.RoomId, msg.UserType, msg.UserId, LEAVETYPE)
 }
 
 func leaveIreRoom(socket socketio.Socket, channel string) {
@@ -50,7 +52,7 @@ func leaveIreRoom(socket socketio.Socket, channel string) {
 	if err != nil {
 		return
 	}
-	onLeaveIreRoom(socket, IreRoomMessage{roomId})
+	onLeaveIreRoom(socket, IreRoomMessage{RoomId: roomId})
 }
 
 func channelName(roomId int) string {
@@ -70,10 +72,10 @@ func getRoomIdFromChannel(channel string) (int, error) {
 	return roomId, nil
 }
 
-func pushSidekiqTask(roomId int, socketId string, eventType int) {
+func pushSidekiqTask(roomId int, userType string, userId int, eventType int) {
 	sidekiqMsg := &IreSidekiqMessage{
 		Class: "Rooms::MemberCountNotificationWorker",
-		Args: []interface{} {roomId, socketId, eventType},
+		Args: []interface{} {roomId, userType, userId, eventType},
 		Retry: true,
 		Queue: "notification",
 		Jid: generateJid(),

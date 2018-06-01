@@ -4,7 +4,8 @@ import (
 	"log"
 	"sync"
 	"github.com/W1llyu/go-socket.io"
-	"github.com/Lux-go/websocket/cache"
+	"github.com/irelia_socket/websocket/cache"
+	"time"
 )
 
 var (
@@ -25,6 +26,11 @@ func initServer() {
 	var err error
 	cacheAdapter = &cache.RedisCacheAdapter{}
 	server, err = socketio.NewServer(NewLuxBroadcast(cacheAdapter), nil)
+	server.SetMaxConnection(65535)
+    server.SetPingTimeout(30 * time.Second)
+    server.SetSessionManager(newServerSessions())
+	server.SetAllowRequest(authRequest)
+	server.SetNewId(newSocketId)
 	if err != nil {
 		log.Fatal(err)
 	}

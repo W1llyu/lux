@@ -3,9 +3,9 @@ package httpserver
 import (
 	"net/http"
 	"fmt"
-	"github.com/Lux-go/config"
-	"github.com/Lux-go/httpserver/router"
-	"github.com/Lux-go/utils"
+	"github.com/irelia_socket/config"
+	"github.com/irelia_socket/httpserver/router"
+	"github.com/irelia_socket/utils"
 )
 
 func Run() {

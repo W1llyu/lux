@@ -3,7 +3,7 @@ package core
 import (
 	"sync"
 	"github.com/W1llyu/go-socket.io"
-	"github.com/Lux-go/websocket/cache"
+	"github.com/irelia_socket/websocket/cache"
 )
 
 /*

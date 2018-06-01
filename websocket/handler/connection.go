@@ -1,7 +1,7 @@
 package handler
 
 import (
-	"github.com/Lux-go/utils"
+	"github.com/irelia_socket/utils"
 	"github.com/W1llyu/go-socket.io"
 	"regexp"
 )

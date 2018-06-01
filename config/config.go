@@ -1,8 +1,6 @@
 package config
 
 import (
-	"fmt"
-	"os"
 	"sync"
 	"github.com/W1llyu/gdao/config"
 )
@@ -10,6 +8,7 @@ import (
 type Config struct {
 	Websocket *WebsocketConf
 	Http *HttpConf
+	Irelia *IreliaConf
 }
 
 type WebsocketConf struct {
@@ -18,6 +17,10 @@ type WebsocketConf struct {
 
 type HttpConf struct {
 	Port int `toml:"port"`
+}
+
+type IreliaConf struct {
+	Host string `toml:"host"`
 }
 
 var (
@@ -31,6 +34,5 @@ func GetConf() *Config {
 }
 
 func initConf() {
-	gopath := os.Getenv("GOPATH")
-	config.LoadConf(&cfg, fmt.Sprintf("%s/config/lux/config.toml", gopath))
+	config.LoadConf(&cfg, "./config//config.toml")
 }

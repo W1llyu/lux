@@ -2,8 +2,8 @@ package handler
 
 import (
 	"time"
-	"github.com/Lux-go/utils"
-	"github.com/Lux-go/websocket/core"
+	"github.com/irelia_socket/utils"
+	"github.com/irelia_socket/websocket/core"
 	"github.com/W1llyu/go-socket.io"
 )
 

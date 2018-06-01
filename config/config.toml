@@ -1,2 +1,6 @@
 [websocket]
   port=3101
+[http]
+  port=3100
+[irelia]
+  host="http://localhost:3000"

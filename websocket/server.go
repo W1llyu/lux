@@ -5,10 +5,10 @@ import (
 	"log"
 	"net/http"
 	"sync"
-	"github.com/Lux-go/config"
-	"github.com/Lux-go/utils"
-	"github.com/Lux-go/websocket/handler"
-	"github.com/Lux-go/websocket/core"
+	"github.com/irelia_socket/config"
+	"github.com/irelia_socket/utils"
+	"github.com/irelia_socket/websocket/handler"
+	"github.com/irelia_socket/websocket/core"
 )
 
 var (

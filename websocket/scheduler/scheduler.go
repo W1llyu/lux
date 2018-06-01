@@ -5,7 +5,7 @@ package scheduler
 
 import (
 	"time"
-	"github.com/Lux-go/websocket/queue"
+	"github.com/irelia_socket/websocket/queue"
 )
 
 // 调度器接口
