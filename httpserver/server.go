@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"github.com/irelia_socket/config"
 	"github.com/irelia_socket/httpserver/router"
-	"github.com/irelia_socket/utils"
+	"github.com/irelia_socket/websocket/utils"
 )
 
 func Run() {

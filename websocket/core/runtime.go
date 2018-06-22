@@ -11,6 +11,7 @@ import (
 var (
 	once   sync.Once
 	cacheAdapter cache.CacheAdapter
+	Sessions = newServerSessions()
 	server *socketio.Server
 )
 
@@ -28,9 +29,9 @@ func initServer() {
 	server, err = socketio.NewServer(NewLuxBroadcast(cacheAdapter), nil)
 	server.SetMaxConnection(65535)
     server.SetPingTimeout(30 * time.Second)
-    server.SetSessionManager(newServerSessions())
+    server.SetPingInterval(10 * time.Second)
+    server.SetSessionManager(Sessions)
 	server.SetAllowRequest(authRequest)
-	server.SetNewId(newSocketId)
 	if err != nil {
 		log.Fatal(err)
 	}

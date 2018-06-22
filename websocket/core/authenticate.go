@@ -15,6 +15,11 @@ import (
 	"encoding/json"
 )
 
+type connClient struct {
+	Client string
+	Token string
+}
+
 var (
 	httpClient = &http.Client{
 		Transport: &http.Transport{

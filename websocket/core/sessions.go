@@ -2,7 +2,7 @@ package core
 
 import (
 	"sync"
-	"github.com/googollee/go-engine.io"
+	"github.com/W1llyu/go-engine.io"
 )
 
 type serverSessions struct {
@@ -39,4 +39,8 @@ func (s *serverSessions) Remove(id string) {
 	defer s.locker.Unlock()
 
 	delete(s.sessions, id)
+}
+
+func (s *serverSessions) Sessions() map[string]engineio.Conn {
+	return s.sessions
 }

@@ -6,7 +6,7 @@ import (
 	"net/http"
 	"sync"
 	"github.com/irelia_socket/config"
-	"github.com/irelia_socket/utils"
+	"github.com/irelia_socket/websocket/utils"
 	"github.com/irelia_socket/websocket/handler"
 	"github.com/irelia_socket/websocket/core"
 )

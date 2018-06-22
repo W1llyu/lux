@@ -1,7 +1,7 @@
 package handler
 
 import (
-	"github.com/irelia_socket/utils"
+	"github.com/irelia_socket/websocket/utils"
 	"github.com/W1llyu/go-socket.io"
 )
 

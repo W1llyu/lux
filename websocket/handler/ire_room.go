@@ -11,7 +11,7 @@ import (
 	"errors"
 	"github.com/W1llyu/gdao/xredis"
 	"encoding/json"
-	"github.com/irelia_socket/utils"
+	"github.com/irelia_socket/websocket/utils"
 )
 
 type IreRoomMessage struct {

@@ -6,7 +6,7 @@ package scheduler
 
 import (
 	"encoding/json"
-	"github.com/irelia_socket/utils"
+	"github.com/irelia_socket/websocket/utils"
 	"github.com/irelia_socket/websocket/core"
 )
 

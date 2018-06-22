@@ -2,7 +2,7 @@ package handler
 
 import (
 	"time"
-	"github.com/irelia_socket/utils"
+	"github.com/irelia_socket/websocket/utils"
 	"github.com/irelia_socket/websocket/core"
 	"github.com/W1llyu/go-socket.io"
 )
