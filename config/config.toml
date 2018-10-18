@@ -1,6 +1,5 @@
 [websocket]
   port=3101
+  logOpen=true
 [http]
   port=3100
-[irelia]
-  host="http://localhost:3000"

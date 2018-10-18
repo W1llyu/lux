@@ -4,7 +4,7 @@ import (
 	"log"
 	"sync"
 	"github.com/W1llyu/go-socket.io"
-	"github.com/irelia_socket/websocket/cache"
+	"github.com/W1llyu/lux/websocket/cache"
 	"time"
 )
 
@@ -31,7 +31,7 @@ func initServer() {
     server.SetPingTimeout(30 * time.Second)
     server.SetPingInterval(10 * time.Second)
     server.SetSessionManager(Sessions)
-	server.SetAllowRequest(authRequest)
+	//server.SetAllowRequest(authRequest)
 	if err != nil {
 		log.Fatal(err)
 	}

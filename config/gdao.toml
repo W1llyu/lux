@@ -6,7 +6,7 @@
   max_active=5
   idle_timeout="10s"
 
-  [redis.irelia]
+  [redis.lux]
   addr="localhost:6379"
   database=2
   max_idle=5

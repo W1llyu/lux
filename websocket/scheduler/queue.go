@@ -6,8 +6,8 @@ package scheduler
 
 import (
 	"encoding/json"
-	"github.com/irelia_socket/websocket/utils"
-	"github.com/irelia_socket/websocket/core"
+	"github.com/W1llyu/lux/websocket/utils"
+	"github.com/W1llyu/lux/websocket/core"
 )
 
 type QueueScheduler struct {

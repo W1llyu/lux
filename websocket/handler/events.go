@@ -36,13 +36,5 @@ func getEvents() []Event {
 			Name:    "leave",
 			Handler: onLeave,
 		},
-		{
-			Name:    "joinIreliaRoom",
-			Handler: onJoinIreRoom,
-		},
-		{
-			Name:    "leaveIreliaRoom",
-			Handler: onLeaveIreRoom,
-		},
 	}
 }

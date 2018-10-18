@@ -8,17 +8,7 @@ import (
 	"net/http"
 	"net"
 	"time"
-	"github.com/irelia_socket/config"
-	"fmt"
-	"log"
-	"io/ioutil"
-	"encoding/json"
 )
-
-type connClient struct {
-	Client string
-	Token string
-}
 
 var (
 	httpClient = &http.Client{
@@ -47,44 +37,7 @@ func authRequest(r *http.Request) error {
 }
 
 func authToken(clientType string, token string) bool {
-	userType := ""
-	switch clientType {
-	case "ios":
-		userType = "Guest"
-	case "android":
-		userType = "Guest"
-	case "admin":
-		userType = "AdminUser"
-	default:
-		return false
-	}
-	body := make(map[string]string)
-	body["type"] = userType
-	body["token"] = token
-	bodyStr, _ := json.Marshal(body)
-	request, err := http.NewRequest("POST", fmt.Sprintf("%s/api/socket_auth", config.GetConf().Irelia.Host), bytes.NewBuffer(bodyStr))
-	request.Header.Set("Content-Type", "application/json")
-	if err != nil {
-		log.Println(err)
-		return false
-	}
-	var response *http.Response
-	response, err = httpClient.Do(request)
-	if err != nil {
-		log.Printf("[FAILED] Cannot get response from irelia, %s", err)
-		return false
-	}
-	if response.StatusCode != 200 {
-		return false
-	}
-	resBodyStr, _ := ioutil.ReadAll(response.Body)
-	resBody := make(map[string]interface{})
-	err = json.Unmarshal(resBodyStr, &resBody)
-	if err != nil {
-		return false
-	}
-	response.Body.Close()
-	return resBody["ok"].(bool)
+	return true
 }
 
 func newSocketId(r *http.Request) string {

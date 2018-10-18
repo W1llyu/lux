@@ -5,7 +5,7 @@ package scheduler
 
 import (
 	"time"
-	"github.com/irelia_socket/websocket/queue"
+	"github.com/W1llyu/lux/websocket/queue"
 )
 
 // 调度器接口
@@ -54,13 +54,15 @@ func NewMessageBody(channel string, data interface {}) MessageBody {
 
 func GetSchedulers() Schedulers {
 	return []Scheduler{
-		CreateQueueScheduler(new(queue.RedisQueue)),
+		CreateQueueScheduler(&queue.RedisQueue{Name: queue.DEFAULT_KEY}),
+		CreateQueueScheduler(&queue.RedisQueue{Name: queue.BET_TOPIC_KEY}),
+		CreateQueueScheduler(&queue.RedisQueue{Name: queue.WAGER_BET_TOPIC_KEY}),
 		//CreateQueueScheduler(new(queue.RmqQueue)),
 	}
 }
 
-func (self Schedulers) Run() {
-	for _, s := range self {
-		go s.Run()
+func (s Schedulers) Run() {
+	for _, scheduler := range s {
+		go scheduler.Run()
 	}
 }

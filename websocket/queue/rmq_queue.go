@@ -5,7 +5,9 @@ package queue
 
 import "github.com/W1llyu/gdao/xrmq"
 
-type RmqQueue struct{}
+type RmqQueue struct{
+	Name string
+}
 
 func (q *RmqQueue) OnMessage(callback interface{}) {
 	client := xrmq.GetClient()
@@ -20,5 +22,5 @@ func (q *RmqQueue) OnMessage(callback interface{}) {
 		Args:       nil,
 	}
 	ch := client.GetChannel(ctx)
-	ch.Receive(QUEUEKEY, callback)
+	ch.Receive(q.Name, callback)
 }

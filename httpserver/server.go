@@ -3,9 +3,9 @@ package httpserver
 import (
 	"net/http"
 	"fmt"
-	"github.com/irelia_socket/config"
-	"github.com/irelia_socket/httpserver/router"
-	"github.com/irelia_socket/websocket/utils"
+	"github.com/W1llyu/lux/config"
+	"github.com/W1llyu/lux/httpserver/router"
+	"github.com/W1llyu/lux/websocket/utils"
 )
 
 func Run() {

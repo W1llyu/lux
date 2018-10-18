@@ -3,7 +3,7 @@ package handler
 import (
 	"fmt"
 	"net/http"
-	"github.com/irelia_socket/websocket/core"
+	"github.com/W1llyu/lux/websocket/core"
 	"encoding/json"
 	"sort"
 )

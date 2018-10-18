@@ -1,7 +1,7 @@
 package router
 
 import (
-	"github.com/irelia_socket/httpserver/handler"
+	"github.com/W1llyu/lux/httpserver/handler"
 )
 
 func initSocketRoutes() {

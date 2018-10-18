@@ -4,9 +4,9 @@
 package main
 
 import (
-	"github.com/irelia_socket/websocket"
-	"github.com/irelia_socket/websocket/scheduler"
-	"github.com/irelia_socket/httpserver"
+	"github.com/W1llyu/lux/websocket"
+	"github.com/W1llyu/lux/websocket/scheduler"
+	"github.com/W1llyu/lux/httpserver"
 	"github.com/W1llyu/gdao/config"
 )
 

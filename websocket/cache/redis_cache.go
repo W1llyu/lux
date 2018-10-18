@@ -11,13 +11,13 @@ const (
 )
 
 func (c *RedisCacheAdapter) ClearAll() error {
-	client := xredis.GetClient()
+	client := xredis.GetNamedClient("lux")
 	defer client.Close()
 	return client.Del(HKEY)
 }
 
 func (c *RedisCacheAdapter) IncreaseRoomMemberCount(room string, count int) error {
-	client := xredis.GetClient()
+	client := xredis.GetNamedClient("lux")
 	defer client.Close()
 	val, err := client.Hincrby(HKEY, room, count)
 	if err != nil {

@@ -8,7 +8,6 @@ import (
 type Config struct {
 	Websocket *WebsocketConf
 	Http *HttpConf
-	Irelia *IreliaConf
 }
 
 type WebsocketConf struct {
@@ -18,10 +17,6 @@ type WebsocketConf struct {
 
 type HttpConf struct {
 	Port int `toml:"port"`
-}
-
-type IreliaConf struct {
-	Host string `toml:"host"`
 }
 
 var (

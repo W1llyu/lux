@@ -3,7 +3,7 @@ package utils
 import (
 	"fmt"
 	"log"
-	"github.com/irelia_socket/config"
+	"github.com/W1llyu/lux/config"
 )
 
 func WarnOnError(err error, msg string) {
