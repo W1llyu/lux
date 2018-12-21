@@ -6,13 +6,6 @@
   max_active=5
   idle_timeout="10s"
 
-  [redis.lux]
-  addr="localhost:6379"
-  database=2
-  max_idle=5
-  max_active=5
-  idle_timeout="10s"
-
 [rabbitmq]
   [rabbitmq.default]
-  addr="amqp://guest:guest@localhost:5672/"
+  addr="amqp://root:root@localhost:5672/"

@@ -57,7 +57,7 @@ func GetSchedulers() Schedulers {
 		CreateQueueScheduler(&queue.RedisQueue{Name: queue.DEFAULT_KEY}),
 		CreateQueueScheduler(&queue.RedisQueue{Name: queue.BET_TOPIC_KEY}),
 		CreateQueueScheduler(&queue.RedisQueue{Name: queue.WAGER_BET_TOPIC_KEY}),
-		//CreateQueueScheduler(new(queue.RmqQueue)),
+		CreateQueueScheduler(&queue.RmqQueue{Name: queue.RMQ_ROUTER}),
 	}
 }
 

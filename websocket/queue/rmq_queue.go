@@ -13,8 +13,8 @@ func (q *RmqQueue) OnMessage(callback interface{}) {
 	client := xrmq.GetClient()
 	defer client.Close()
 	ctx := xrmq.ExchangeCtx{
-		Name:       "logs_direct",
-		Type:       "direct",
+		Name:       DEFAULT_KEY,
+		Type:       "topic",
 		Durable:    true,
 		AutoDelete: false,
 		Internal:   false,
