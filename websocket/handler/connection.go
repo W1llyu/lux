@@ -7,7 +7,6 @@ import (
 
 func onConnection(socket socketio.Socket) {
 	utils.Infof("Socket[%s] connected", socket.Id())
-	socket.Join(socket.Id())
 	socket.On("disconnection", onDisconnection)
 	for _, event := range getEvents() {
 		socket.On(event.Name, event.Handler)
