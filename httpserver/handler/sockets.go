@@ -18,8 +18,6 @@ func GetRoomMemberCount(w http.ResponseWriter, r *http.Request) {
 
 type socketDetail struct {
 	RemoteAddr string
-	Client string
-	Token string
 	Referer string
 }
 
@@ -31,10 +29,12 @@ func GetSocketDetail(w http.ResponseWriter, r *http.Request) {
 	if conn == nil {
 		res["socket"] = nil
 	} else {
+		remoteIp := conn.Request().Header.Get("X-Real-IP")
+		if remoteIp == "" {
+			remoteIp = conn.Request().RemoteAddr
+		}
 		s := socketDetail{
-			RemoteAddr: conn.Request().RemoteAddr,
-			Client: conn.Request().URL.Query().Get("client"),
-			Token: conn.Request().URL.Query().Get("token"),
+			RemoteAddr: remoteIp,
 			Referer: conn.Request().Referer(),
 		}
 		res["socket"] = s

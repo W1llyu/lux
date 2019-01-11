@@ -13,6 +13,7 @@ type Config struct {
 type WebsocketConf struct {
 	Port int `toml:"port"`
 	LogOpen bool `toml:"logOpen"`
+	Auth bool `toml:"auth"`
 }
 
 type HttpConf struct {

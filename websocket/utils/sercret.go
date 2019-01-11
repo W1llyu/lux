@@ -7,7 +7,7 @@ import (
 )
 
 const (
-	seed = "ThisIsSecretSeedForTest"
+	seed = "LUX_SECRET_SEED"
 )
 
 var (

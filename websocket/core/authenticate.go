@@ -2,9 +2,6 @@ package core
 
 import (
 	"errors"
-	"bytes"
-	"crypto/md5"
-	"encoding/base64"
 	"net/http"
 	"fmt"
 	"github.com/W1llyu/lux/websocket/constant"
@@ -12,6 +9,8 @@ import (
 	"github.com/W1llyu/lux/websocket/utils"
 	"strings"
 	"strconv"
+	"time"
+	"math"
 )
 
 func authRequest(r *http.Request) error {
@@ -40,23 +39,8 @@ func checkAccessToken(token string) bool {
 }
 
 func checkSecret(timestamp int64, secret string) bool {
+	if math.Abs(float64(time.Now().Unix() - timestamp)) > 300 {
+		return false
+	}
 	return strings.EqualFold(utils.Encrypt(timestamp), secret)
-}
-
-func authToken(clientType string, token string) bool {
-	return true
-}
-
-func newSocketId(r *http.Request) string {
-	return generateConnId(r.URL.Query().Get("token"))
-}
-
-func generateConnId(token string) string {
-	hash := token
-	buf := bytes.NewBuffer(nil)
-	sum := md5.Sum([]byte(hash))
-	encoder := base64.NewEncoder(base64.URLEncoding, buf)
-	encoder.Write(sum[:])
-	encoder.Close()
-	return buf.String()[:20]
 }

@@ -3,9 +3,10 @@ package core
 import (
 	"log"
 	"sync"
+	"time"
 	"github.com/W1llyu/go-socket.io"
 	"github.com/W1llyu/lux/websocket/cache"
-	"time"
+	"github.com/W1llyu/lux/config"
 )
 
 var (
@@ -31,7 +32,9 @@ func initServer() {
     server.SetPingTimeout(30 * time.Second)
     server.SetPingInterval(10 * time.Second)
     server.SetSessionManager(Sessions)
-	server.SetAllowRequest(authRequest)
+	if config.GetConf().Websocket.Auth {
+		server.SetAllowRequest(authRequest)
+	}
 	if err != nil {
 		log.Fatal(err)
 	}

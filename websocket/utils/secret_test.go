@@ -6,5 +6,5 @@ import (
 )
 
 func TestEncrypt(t *testing.T) {
-	fmt.Println(Encrypt(1547175208))
+	fmt.Println(Encrypt(1547194169))
 }

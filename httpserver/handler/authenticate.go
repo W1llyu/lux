@@ -23,6 +23,7 @@ func GetAccessToken(w http.ResponseWriter, r *http.Request) {
 	} else {
 		res["access_token"] = nil
 	}
+	res["timestamp"] = time.Now().Unix()
 	body, _ := json.Marshal(res)
 	fmt.Fprint(w, string(body))
 }
