@@ -31,7 +31,7 @@ func initServer() {
     server.SetPingTimeout(30 * time.Second)
     server.SetPingInterval(10 * time.Second)
     server.SetSessionManager(Sessions)
-	//server.SetAllowRequest(authRequest)
+	server.SetAllowRequest(authRequest)
 	if err != nil {
 		log.Fatal(err)
 	}

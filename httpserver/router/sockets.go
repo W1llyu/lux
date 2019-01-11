@@ -9,4 +9,5 @@ func initSocketRoutes() {
 	mux.Get("/sockets/count", handler.GetSocketCount)
 	mux.Get("/sockets/:socketId", handler.GetSocketDetail)
 	mux.Get("/sockets/client/stat", handler.GetClientStat)
+	mux.Get("/security/access_token", handler.GetAccessToken)
 }

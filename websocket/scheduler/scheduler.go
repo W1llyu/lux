@@ -6,6 +6,7 @@ package scheduler
 import (
 	"time"
 	"github.com/W1llyu/lux/websocket/queue"
+	"github.com/W1llyu/lux/websocket/constant"
 )
 
 // 调度器接口
@@ -54,10 +55,10 @@ func NewMessageBody(channel string, data interface {}) MessageBody {
 
 func GetSchedulers() Schedulers {
 	return []Scheduler{
-		CreateQueueScheduler(&queue.RedisQueue{Name: queue.DEFAULT_KEY}),
-		CreateQueueScheduler(&queue.RedisQueue{Name: queue.BET_TOPIC_KEY}),
-		CreateQueueScheduler(&queue.RedisQueue{Name: queue.WAGER_BET_TOPIC_KEY}),
-		CreateQueueScheduler(&queue.RmqQueue{Name: queue.RMQ_ROUTER}),
+		CreateQueueScheduler(&queue.RedisQueue{Name: constant.DEFAULT_KEY}),
+		CreateQueueScheduler(&queue.RedisQueue{Name: constant.BET_TOPIC_KEY}),
+		CreateQueueScheduler(&queue.RedisQueue{Name: constant.WAGER_BET_TOPIC_KEY}),
+		CreateQueueScheduler(&queue.RmqQueue{Name: constant.RMQ_ROUTER}),
 	}
 }
 

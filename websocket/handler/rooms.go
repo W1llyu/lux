@@ -2,13 +2,13 @@ package handler
 
 import (
 	"time"
+	"encoding/json"
 	"github.com/W1llyu/lux/websocket/utils"
 	"github.com/W1llyu/lux/websocket/core"
 	"github.com/W1llyu/go-socket.io"
 	"github.com/W1llyu/gdao/xrmq"
 	"github.com/streadway/amqp"
-	"github.com/W1llyu/lux/websocket/queue"
-	"encoding/json"
+	"github.com/W1llyu/lux/websocket/constant"
 )
 
 const (
@@ -46,7 +46,7 @@ type callbackMessage struct {
 
 func getChannel() *xrmq.Channel {
 	return xrmq.GetClient().GetChannel(xrmq.ExchangeCtx{
-		Name:       queue.DEFAULT_KEY,
+		Name:       constant.DEFAULT_KEY,
 		Type:       "topic",
 		Durable:    true,
 		AutoDelete: false,
@@ -69,7 +69,7 @@ func notifyCallback(key string, socket socketio.Socket, roomName string) {
 		return
 	}
 	err = getChannel().Publish(
-		queue.DEFAULT_KEY,
+		constant.DEFAULT_KEY,
 		key,
 		false,
 		false,

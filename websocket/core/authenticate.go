@@ -6,34 +6,41 @@ import (
 	"crypto/md5"
 	"encoding/base64"
 	"net/http"
-	"net"
-	"time"
-)
-
-var (
-	httpClient = &http.Client{
-		Transport: &http.Transport{
-			Dial: func(netw, addr string) (net.Conn, error) {
-				conn, err := net.DialTimeout(netw, addr, time.Second * 30)    // 建立连接超时
-				if err != nil {
-					return nil, err
-				}
-				conn.SetDeadline(time.Now().Add(time.Second * 30))   // 发送接收数据超时
-				return conn, nil
-			},
-			ResponseHeaderTimeout: time.Second * 30,
-		},
-	}
+	"fmt"
+	"github.com/W1llyu/lux/websocket/constant"
+	"github.com/W1llyu/gdao/xredis"
+	"github.com/W1llyu/lux/websocket/utils"
+	"strings"
+	"strconv"
 )
 
 func authRequest(r *http.Request) error {
-	if r.URL.Query().Get("token") == "" || r.URL.Query().Get("client") == "" {
-		return errors.New("unknown request")
+	timestamp, err := strconv.ParseInt(r.URL.Query().Get("timestamp"), 10, 64)
+	secret := r.URL.Query().Get("secret")
+	accessToken := r.URL.Query().Get("access_token")
+	if err != nil || secret == "" || accessToken == "" {
+		return errors.New("invalid request")
 	}
-	if !authToken(r.URL.Query().Get("client"), r.URL.Query().Get("token")) {
-		return errors.New("request authenticate failed")
+	if checkAccessToken(accessToken) && checkSecret(timestamp, secret) {
+		return nil
+	} else {
+		return errors.New("invalid request")
 	}
-	return nil
+}
+
+func checkAccessToken(token string) bool {
+	client := xredis.GetClient()
+	defer client.Close()
+	key := fmt.Sprintf("%s_%s", constant.SOCKET_SECURITY_KEY, token)
+	ok, _ := client.Exists(key)
+	if ok {
+		client.Del(key)
+	}
+	return ok
+}
+
+func checkSecret(timestamp int64, secret string) bool {
+	return strings.EqualFold(utils.Encrypt(timestamp), secret)
 }
 
 func authToken(clientType string, token string) bool {
