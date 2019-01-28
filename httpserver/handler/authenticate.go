@@ -8,6 +8,7 @@ import (
 	"time"
 	"github.com/W1llyu/gdao/xredis"
 	"github.com/W1llyu/lux/websocket/constant"
+	"log"
 )
 
 func GetAccessToken(w http.ResponseWriter, r *http.Request) {
@@ -21,6 +22,7 @@ func GetAccessToken(w http.ResponseWriter, r *http.Request) {
 		client.Expire(key, 5 * time.Minute)
 		res["access_token"] = token
 	} else {
+		log.Printf("[ERROR] %s %s", "Store Accesstoken Error", err)
 		res["access_token"] = nil
 	}
 	res["timestamp"] = time.Now().Unix()

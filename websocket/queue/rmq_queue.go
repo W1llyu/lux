@@ -24,6 +24,5 @@ func (q *RmqQueue) OnMessage(callback interface{}) {
 		NoWait:     false,
 		Args:       nil,
 	}
-	ch := client.GetChannel(ctx)
-	ch.Receive(q.Name, callback)
+	client.Receive(ctx, q.Name, callback)
 }
